@@ -2,8 +2,6 @@ package ru.chibbistest.myapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 
@@ -62,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         if (isFragmentContainerEmpty) {
             supportFragmentManager
                 .beginTransaction()
-                .add(R.id.fragmentContainer, PhotoGalleryFragment.newInstance())
+                .add(R.id.fragmentContainer, GalleryFragment.newInstance())
                 .commit()
         }
 

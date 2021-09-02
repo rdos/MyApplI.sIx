@@ -5,24 +5,32 @@ import android.util.Log
 import android.view.*
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bignerdranch.android.photogallery.GalleryItem
+import com.bignerdranch.android.photogallery.GalleryViewModel
 
 private const val TAG = "PhotoGalleryFragment"
-private val integer15 = 15
-//sealed
-class PhotoGalleryFragment : Fragment(), View.OnClickListener {
+private val integer15 = 3
 
-//    private lateinit var photoGalleryViewModel: PhotoGalleryViewModel
+/*
+    //x=экс!
+        // TODO: 02.09.2021 o=оу!!  u=ю
+        override fun onBindViewHolder(holder: PhotoHolder, position: Int) {
+            val galleryItem = "abcdefghIjklmnOp"[position]
+ */
+
+//sealed
+class GalleryFragment : Fragment() {
+
+    private lateinit var galleryViewModel: GalleryViewModel
     private lateinit var photoRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-//        photoGalleryViewModel =
-//                ViewModelProviders.of(this).get(PhotoGalleryViewModel::class.java)
+        galleryViewModel = ViewModelProvider(this).get(GalleryViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -35,26 +43,28 @@ class PhotoGalleryFragment : Fragment(), View.OnClickListener {
         photoRecyclerView = view.findViewById(R.id.photo_recycler_view)
         photoRecyclerView.layoutManager = GridLayoutManager(context, integer15)
 
-        photoRecyclerView.setOnClickListener(this)
+//        photoRecyclerView.setOnClickListener(this)
         // TODO: 01.09.2021 https://vk.com/thr_1 гля котик на аватаРрр..
-        photoRecyclerView.adapter = PhotoAdapter()
+//        photoRecyclerView.adapter = PhotoAdapter()
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        photoGalleryViewModel.galleryItemLiveData.observe(
-//            viewLifecycleOwner,
-//            Observer { galleryItems ->
-//                Log.d(TAG, "Have gallery items from view model $galleryItems")
-//                photoRecyclerView.adapter = PhotoAdapter(galleryItems)
-//            })
+        galleryViewModel.galleryItemLiveData.observe(
+            viewLifecycleOwner,
+            { galleryItems ->
+                Log.d(TAG, "Have gallery items from view model $galleryItems")
+                photoRecyclerView.adapter = PhotoAdapter(galleryItems)
+                return@observe
+            }
+        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.fragment_crime_list, menu)
+        inflater.inflate(R.menu.fragment_crime_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -75,38 +85,32 @@ class PhotoGalleryFragment : Fragment(), View.OnClickListener {
         val bindTitle: (CharSequence) -> Unit = itemTextView::setText
     }
 
-    private class PhotoAdapter()
-        : RecyclerView.Adapter<PhotoHolder>(), View.OnClickListener {
+
+    private class PhotoAdapter(private val galleryItems: List<GalleryItem>)
+        : RecyclerView.Adapter<PhotoHolder>() {
 
         override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int
         ): PhotoHolder {
             val textView = TextView(parent.context)
-            textView.setOnClickListener(this)
             return PhotoHolder(textView)
         }
 
-        override fun getItemCount(): Int = integer15
-            //x=экс!
-        // TODO: 02.09.2021 o=оу!!  u=ю
+        override fun getItemCount(): Int = galleryItems.size
+
         override fun onBindViewHolder(holder: PhotoHolder, position: Int) {
-            val galleryItem = "abcdefghIjklmnOp"[position]
-            holder.bindTitle(galleryItem.toString())
-        }
-
-        override fun onClick(v: View?) {
-            TODO("Not yet implemented")
+            val galleryItem = galleryItems[position]
+            holder.bindTitle(galleryItem.created_at)
         }
     }
 
-
-    override fun onClick(v: View?) {
-        TODO("Not yet implemented")
-        Log.d(TAG, "onClick:/:r_dos")
-    }
+//    override fun onClick(v: View?) {
+//        TODO("Not yet implemented")
+//        Log.d(TAG, "onClick:/:r_dos")
+//    }
 
     companion object {
-        fun newInstance() = PhotoGalleryFragment()
+        fun newInstance() = GalleryFragment()
     }
 }
