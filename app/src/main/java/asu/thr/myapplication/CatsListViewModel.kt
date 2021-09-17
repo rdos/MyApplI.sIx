@@ -5,20 +5,15 @@ import asu.thr.myapplication.database.Cat
 import asu.thr.myapplication.z.TtestO
 
 class CatsListViewModel : ViewModel() {
-    private val mCatRepository = CatDatabase.get()
+    private val mCatRepo = Repo.get()
     private val mCatMaxCntLiveData = MutableLiveData<Int>()
-
-    init {
-        CaatsFetcher().fetchCats()
-    }
 
 //    val catsLiveDate: LiveData<List<Cat>> =
 //        Transformations.switchMap(mCatMaxCntLiveData) { maxCnt ->
 //        mCatRepository.getCats(maxCnt)
 //    }
 
-
-    val catsLiveDate: LiveData<List<Cat>> = mCatRepository.getCats()
+    val catsLiveDate: LiveData<List<Cat>> = mCatRepo.getCats()
 
     override fun onCleared() {
         super.onCleared()
@@ -30,7 +25,7 @@ class CatsListViewModel : ViewModel() {
     }
 
     fun deleteCat(idForDelete: Int) {
-        mCatRepository.deleteCat(idForDelete)
+        mCatRepo.deleteCat(idForDelete)
     }
 
 }

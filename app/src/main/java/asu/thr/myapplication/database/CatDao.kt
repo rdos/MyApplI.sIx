@@ -6,7 +6,7 @@ import androidx.room.*
 @Dao
 interface CatDao {
 
-    @Query("SELECT * FROM Cat")
+    @Query("SELECT * FROM cat")
     fun getCats(): LiveData<List<Cat>>
 
     @Query("SELECT c.*\n" +
@@ -23,9 +23,9 @@ interface CatDao {
 //    fun updateCrime(crime: Crime)
 
     @Insert
-    fun addCat(cat: Cat)
+    fun addCat(catEntity: Cat)
 
-    @Query("DELETE from Cat ")
+    @Query("DELETE from cat ")
     fun deleteAll(): Int
 
     @Query("DELETE from cat where id = :idForDelete ")

@@ -1,12 +1,9 @@
-package asu.thr.myapplication
+package asu.thr.myapplication.database
 
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
-import asu.thr.myapplication.api.CataasResponse
-import asu.thr.myapplication.database.AppDatabase
-import asu.thr.myapplication.database.Cat
-import asu.thr.myapplication.database.migration_1_2
+import asu.thr.myapplication.api.CataasEntity
 import java.io.File
 import java.util.concurrent.Executors
 
@@ -25,7 +22,7 @@ class CatDatabase private constructor(context: Context) {
 
         fun get(): CatDatabase {
             return INSTANCE ?:
-            throw IllegalStateException("CatRepo must be initialized")
+            throw IllegalStateException("CatDatabase must be initialized")
         }
     }
 
@@ -54,9 +51,9 @@ class CatDatabase private constructor(context: Context) {
 //        }
 //    }
 
-    fun addCat(cat: Cat) {
+    fun addCat(catEntity: Cat) {
         mExecutor.execute {
-            catDao.addCat(cat)
+            catDao.addCat(catEntity)
         }
     }
 
@@ -66,21 +63,16 @@ class CatDatabase private constructor(context: Context) {
         }
     }
 
-    fun getPhotoFile(cat: Cat): File = File(filesDir, cat.photoFileName)
+    fun getPhotoFile(catEntity: Cat): File = File(filesDir, catEntity.photoFileName)
 
-    fun startTrans(cats: CataasResponse) {
+    fun startTrans(pCatEntity: CatEntity) {
         mExecutor.execute {
             mDatabase.runInTransaction {
                 catDao.deleteAll()
-                for (flickr in cats) {
-                    val cat = Cat(
-                        id = null,
-                        id_id = flickr.id_id,
-                        date_date = flickr.created_at,
-                        url_url = "https://cataas.com/cat/"
-                    )
-                    catDao.addCat(cat)
+                for (catEntity in pCatEntity) {
+                        catDao.addCat(catEntity)
                 }
+
             }
         }
     }

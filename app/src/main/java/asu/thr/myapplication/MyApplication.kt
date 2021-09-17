@@ -6,6 +6,6 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        CatDatabase.initialize(this)
+        Repo.initialize(this)
     }
 }

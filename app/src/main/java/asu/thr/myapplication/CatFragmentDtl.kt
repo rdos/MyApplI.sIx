@@ -81,10 +81,10 @@ class CatFragmentDtl : Fragment(), DatePickerFragment.Callbacks {
 //        )
     }
 
-    private fun updateUI(cats: List<Cat>) {
-        TtestO().sayHello(cats[cats.size-1].url_url)
-        TtestO().sayHello("${cats[cats.size-1].id}")
-        TtestO().sayHello("${cats.size}")
+    private fun updateUI(catEntities: List<Cat>) {
+        TtestO().sayHello(catEntities[catEntities.size-1].url_url)
+        TtestO().sayHello("${catEntities[catEntities.size-1].id}")
+        TtestO().sayHello("${catEntities.size}")
 
 //        TODO("Not yet implemented")
     }

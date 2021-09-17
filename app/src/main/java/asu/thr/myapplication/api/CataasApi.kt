@@ -11,5 +11,5 @@ interface CataasApi {
 //            "&nojsoncallback=1" +
 //            "&extras=url_s"
         )
-    fun fetchPhotos(): Call<CataasResponse>
+    fun fetchPhotos(): Call<CataasEntity>
 }

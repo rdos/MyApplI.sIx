@@ -1,8 +1,6 @@
 package asu.thr.myapplication
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import asu.thr.myapplication.api.CataasResponse
 import asu.thr.myapplication.z.TtestO
 
 class CatDtlViewModel : ViewModel() {

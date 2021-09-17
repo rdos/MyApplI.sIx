@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -68,8 +69,8 @@ class GalleryListFragment : Fragment() {
         photoRecyclerView = view.findViewById(R.id.photo_recycler_view)
         //
         val layoutManager = LinearLayoutManager(context)
-//        layoutManager.reverseLayout = true
-//        layoutManager.stackFromEnd = true
+        layoutManager.reverseLayout = true
+        layoutManager.stackFromEnd = true
         photoRecyclerView.layoutManager = layoutManager
 
 //        photoRecyclerView.setOnClickListener(this)
@@ -126,6 +127,7 @@ class GalleryListFragment : Fragment() {
         val bindTitle: (CharSequence) -> Unit = itemTextView.findViewById<TextView>(R.id.textView2)::setText
         val bindImage: ImageView = itemTextView.findViewById(R.id.imageView2)
         var catIdL = 0
+        var position: Int? = null
 
         init {
             itemTextView.setOnLongClickListener(this)
@@ -134,6 +136,7 @@ class GalleryListFragment : Fragment() {
         override fun onLongClick(v: View?): Boolean {
             mCatsViewModel.deleteCat(catIdL)
             mItemShowN--
+            photoRecyclerView.adapter?.notifyItemRemoved(position!!)
             return true
         }
     }
@@ -159,8 +162,9 @@ class GalleryListFragment : Fragment() {
             holder.bindTitle(cat.date_date)
             val urlS = cat.urlAddress
             holder.catIdL = cat.id!!
+            holder.position = position
             TtestO().sayHello("$holder.catIdL")
-
+            holder.itemView.animation= AnimationUtils.loadAnimation(holder.itemView.context, R.anim.my_anim_ttest)
             Picasso.with(context)
                 .load(urlS)
                 .placeholder(R.drawable.ic_launcher_background)
