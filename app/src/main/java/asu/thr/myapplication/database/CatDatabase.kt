@@ -3,7 +3,6 @@ package asu.thr.myapplication.database
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
-import asu.thr.myapplication.api.CataasEntity
 import java.io.File
 import java.util.concurrent.Executors
 

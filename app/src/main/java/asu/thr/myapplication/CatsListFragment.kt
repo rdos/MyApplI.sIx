@@ -13,8 +13,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import asu.thr.myapplication.database.Cat
-import com.squareup.picasso.Picasso
 import asu.thr.myapplication.z.TtestO
+import com.squareup.picasso.Picasso
 
 private const val TAG = "PhotoGalleryFragment"
 private val integer15 = 2
@@ -28,9 +28,11 @@ private val integer15 = 2
 
 //sealed
 class GalleryListFragment : Fragment() {
+    fun knockKnock(): Unit = println("Who’s there?")
 
     var mItemShowN = 1
     private var mCallbacksAct: Callbacks? = null
+    private lateinit var mPicasso: Picasso
 
     interface Callbacks {
         fun onGalleryItemSelected()
@@ -73,6 +75,11 @@ class GalleryListFragment : Fragment() {
         layoutManager.stackFromEnd = true
         photoRecyclerView.layoutManager = layoutManager
 
+
+//        val okHttpDownloader = OkHttpDownloader(okHttpClient)
+//        mPicasso = Picasso.Builder(context).downloader(okHttpDownloader).build()
+//
+//
 //        photoRecyclerView.setOnClickListener(this)
         // TODO: 01.09.2021 https://vk.com/thr_1 гля котик на аватаРрр..
 //        photoRecyclerView.adapter = PhotoAdapter()

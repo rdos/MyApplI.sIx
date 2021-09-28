@@ -6,9 +6,9 @@ import asu.thr.myapplication.database.CatEntity
 
 //TODO: я нашёл свою 8ену
 // TODO: 21.09.2021 custom view любо
-// TODO: 21.09.2021 с RxJava
+// TODO: 21.09.2021 с RxJava 
 // TODO: 21.09.2021 24:00 с Dagger2    
-// TODO: https://github.com/Polecat/assessment-android-2020
+
 class MappER {
 
     fun toCatEntity(pCataasEntity: CataasEntity): CatEntity {
@@ -25,3 +25,6 @@ class MappER {
         return catEntity
     }
 }
+// TODO: 09.10.2021 StrictMode.enableDefaults()
+// TODO: https://github.com/Polecat/assessment-android-2020
+//TODO: !!!   fun <T : Any> List<T>.toRdosya(): String { return Rubel.name    }

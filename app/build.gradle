@@ -13,14 +13,18 @@ android {
         targetSdk 30
         versionCode 1
         versionName "1.0"
-
+        buildConfigField "boolean", "SRVR_LO", "true"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
     buildTypes {
         release {
             minifyEnabled false
+
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField "boolean", "SERVER_LOGGING", "false"
         }
     }
     compileOptions {
@@ -33,23 +37,31 @@ android {
 }
 
 dependencies {
-//    todo надо бы поудалять и разобраться чokчему))
+//    todo надо бы поудалять и разобраться ЧО/K/чему))НУЛИ
 
     implementation 'com.google.android.material:material:1.4.0'
-
+    implementation 'com.google.dagger:dagger:2.34'
+    kapt 'com.google.dagger:dagger-compiler:2.34'
     implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
-    implementation 'com.google.code.gson:gson:2.8.6'
-
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
-
-    implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
+    implementation("io.reactivex.rxjava3:rxkotlin:3.0.0")
+
+    implementation 'com.jakewharton.timber:timber:4.6.0'
+    implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
+
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.14.7'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.0'
+
+    implementation 'com.google.code.gson:gson:2.8.6'
 
     implementation "androidx.room:room-runtime:2.4.0-alpha04"
     kapt "androidx.room:room-compiler:2.4.0-alpha04"
