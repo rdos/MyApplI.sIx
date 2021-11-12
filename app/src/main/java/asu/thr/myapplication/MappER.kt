@@ -3,7 +3,7 @@ package asu.thr.myapplication
 import asu.thr.myapplication.api.CataasEntity
 import asu.thr.myapplication.database.Cat
 import asu.thr.myapplication.database.CatEntity
-
+Ж€НА ОЛИГАРХА__😢))😅
 //TODO: я нашёл свою 8ену
 // TODO: 21.09.2021 custom view любо
 // TODO: 21.09.2021 с RxJava 
