@@ -499,3 +499,12 @@ _~_~   _~
 ГоДDR:СпроС СпортзаСпросТО 
 _________________
 ::))
+//TOdo LiveEntity)))
+//class RPCProvider(
+//    val type: String,
+//    val position: Point
+//) {
+//    fun getRPCEntity(): RPCEntity{
+//        return RPCEntity(type, PayLoadEntity(position.latitude, position.longitude))
+//    }
+//}
