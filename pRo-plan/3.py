@@ -498,6 +498,8 @@ _~_~   _~
 К ОЖ З ГС Ф=КРАС~~~~~~~~~
 ГоДDR:СпроС СпортзаСпросТО 
 _________________
+//TOdo LiveEntity)) )vWSs{
+class RPCProvider(!!!
 ::))
 //TOdo LiveEntity)))
 //class RPCProvider(
