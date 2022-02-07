@@ -4,10 +4,13 @@ import asu.thr.myapplication.api.CataasEntity
 import asu.thr.myapplication.database.Cat
 import asu.thr.myapplication.database.CatEntity
 Ж€НА ОЛИГАРХА__😢))😅
+
+ LOVE=eS+TeR иNдИЙ=индий=ID=49 
+((11 0)))6D программы мне нравятся.ПЕРЕспоЮЛУЧШЕиСПАТЬпоЕаиДЕМ.
 //TODO: я нашёл свою 8ену
 // TODO: 21.09.2021 custom view любо
 // TODO: 21.09.2021 с RxJava 
-// TODO: 21.09.2021 24:00 с Dagger2    
+// TODO: 21.09.2021 24:00 с Dagger2     время и тут поз
 
 class MappER {
 
